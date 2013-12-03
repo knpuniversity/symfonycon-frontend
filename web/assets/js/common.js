@@ -9,6 +9,7 @@ requirejs.config({
     baseUrl: 'assets/js',
     paths: {
         app: 'app',
-        domReady: '../vendor/requirejs-domready/domReady'
+        domReady: '../vendor/requirejs-domready/domReady',
+        jquery: '../vendor/jquery/jquery.min'
     }
 });
