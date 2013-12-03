@@ -16,8 +16,8 @@
                     'bundles/event/css/event.css'
                     'bundles/event/css/events.css'
                     'bundles/event/css/main.css'
-                    'bundles/event/css/bootstrap/css/bootstrap.css'
-                    filter='?cssmin'
+                    'components/bootstrap/dist/css/bootstrap.css'
+                    'components/bootstrap/dist/css/bootstrap-theme.css'
                     output='css/generated/layout.css'
                 %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -27,7 +27,7 @@
     </head>
     <body>
         {% if app.session.flashBag.has('success') %}
-            <div class="alert-message success">
+            <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('success') %}
                     {{ msg }}
                 {% endfor %}
