@@ -1,23 +1,11 @@
-<form action="{{ entity.id ? path('event_update', { 'id': entity.id }) : path('event_create') }}" method="post" {{ form_enctype(form) }} class="js-event-form">
+
+<form action="{{ entity.id ? path('event_update', { 'id': entity.id }) : path('event_create') }}" method="post" {{ form_enctype(form) }} class="js-event-form" novalidate>
     {{ form_errors(form) }}
 
-    <h1>
-        {{ form_errors(form.name) }}
-        {{ form_widget(form.name) }}
-    </h1>
-
-    <dl>
-        <dt>where:</dt>
-        <dd>{{ form_errors(form.location) }} {{ form_widget(form.location) }}</dd>
-
-        <dt>when:</dt>
-        <dd>{{ form_errors(form.time) }} {{ form_widget(form.time) }}</dd>
-
-        <dt>what:</dt>
-        <dd>
-            {{ form_errors(form.details) }} {{ form_widget(form.details) }}
-        </dd>
-    </dl>
+    {{ form_row(form.name) }}
+    {{ form_row(form.location) }}
+    {{ form_row(form.time) }}
+    {{ form_row(form.details) }}
 
     {{ form_rest(form) }}
 

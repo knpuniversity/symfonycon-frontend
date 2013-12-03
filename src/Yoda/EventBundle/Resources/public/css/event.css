@@ -188,3 +188,7 @@
 .event-show .hidden {
     display: none;
 }
+.bootstrap-datetime select {
+    width: auto;
+    display: inline;
+}

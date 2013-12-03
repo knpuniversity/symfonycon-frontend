@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Yoda\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Yoda\EventBundle\Entity\Event
@@ -28,6 +29,7 @@ class Event
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -49,6 +51,7 @@ class Event
      * @var string $location
      *
      * @ORM\Column(name="location", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $location;
 
