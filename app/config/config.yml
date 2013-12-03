@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: "@EventBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~
@@ -30,10 +32,11 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles:        [EventBundle]
     #java: /usr/bin/java
     filters:
-        cssrewrite: ~
+        cssrewrite:
+            apply_to: \.css$
         #closure:
         #    jar: %kernel.root_dir%/Resources/java/compiler.jar
         #yui_css:
@@ -64,3 +67,8 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

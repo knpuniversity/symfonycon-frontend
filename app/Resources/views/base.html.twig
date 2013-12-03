@@ -2,12 +2,48 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>
+            {%- if block('title') -%}
+                {{ block('title') }} | YAY! Starwars Events
+            {%- else -%}
+                Events from a Galaxy, far far away
+            {%- endif -%}
+        </title>
+
+        {% block stylesheets %}
+
+            {% stylesheets
+                    'bundles/event/css/event.css'
+                    'bundles/event/css/events.css'
+                    'bundles/event/css/main.css'
+                    'bundles/event/css/bootstrap/css/bootstrap.css'
+                    filter='?cssmin'
+                    output='css/generated/layout.css'
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert-message success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+            {% javascripts
+                    'bundles/event/js/jquery.blockUI.js'
+                    output='js/generated/main.js'
+                %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>
