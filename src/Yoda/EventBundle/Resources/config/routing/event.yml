@@ -11,8 +11,8 @@ event_new:
     defaults: { _controller: "EventBundle:Event:new" }
 
 event_create:
-    pattern:  /create
-    defaults: { _controller: "EventBundle:Event:create" }
+    pattern:  /create.{_format}
+    defaults: { _controller: "EventBundle:Event:create", _format: html }
     requirements: { _method: post }
 
 event_edit:

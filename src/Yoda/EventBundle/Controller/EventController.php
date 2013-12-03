@@ -81,6 +81,7 @@ class EventController extends Controller
         $entity  = new Event();
         $form = $this->createForm(new EventType(), $entity);
         $form->handleRequest($request);
+        $isJson = $request->getRequestFormat() == 'json';
 
         if ($form->isValid()) {
             // this works
@@ -95,9 +96,32 @@ class EventController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $url = $this->generateUrl('event_show', array('slug' => $entity->getSlug()));
+
+            // hackish JSON endpoint
+            if ($isJson) {
+                return new JsonResponse(array(
+                    'success' => true,
+                    'redirect_url' => $url,
+                ));
+            }
+
             $request->getSession()->getFlashBag()->add('success', 'Event saved!');
 
-            return $this->redirect($this->generateUrl('event_show', array('slug' => $entity->getSlug())));
+            return $this->redirect($url);
+        }
+
+        if ($isJson) {
+            // a very cheap/ugly JSON endpoint that actually returns the HTML form
+            $data = array(
+                'success' => false,
+                'form' => $this->renderView('EventBundle:Event:_form.html.twig', array(
+                    'form' => $form->createView(),
+                    'entity' => $entity
+                )),
+            );
+
+            return new JsonResponse($data);
         }
 
         return $this->render('EventBundle:Event:new.html.twig', array(
@@ -129,7 +153,7 @@ class EventController extends Controller
             // a very cheap/ugly JSON endpoint that actually returns the HTML form
             $data = array(
                 'form' => $this->renderView('EventBundle:Event:_form.html.twig', array(
-                    'edit_form' => $editForm->createView(),
+                    'form' => $editForm->createView(),
                     'entity' => $entity
                 ))
             );
@@ -170,13 +194,13 @@ class EventController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            // really short-sighted JSON endpoint
+            // hackish JSON endpoint
             if ($isJson) {
                 return new JsonResponse(array(
                     'success' => true,
                     'event_html' => $this->renderView('EventBundle:Event:_event.html.twig', array(
                         'entity' => $entity
-                    ))
+                    )),
                 ));
             }
 
@@ -190,7 +214,7 @@ class EventController extends Controller
             $data = array(
                 'success' => false,
                 'form' => $this->renderView('EventBundle:Event:_form.html.twig', array(
-                    'edit_form' => $editForm->createView(),
+                    'form' => $editForm->createView(),
                     'entity' => $entity
                 )),
             );

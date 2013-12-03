@@ -1,25 +1,25 @@
-<form action="{{ path('event_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="js-event-edit-form">
-    {{ form_errors(edit_form) }}
+<form action="{{ entity.id ? path('event_update', { 'id': entity.id }) : path('event_create') }}" method="post" {{ form_enctype(form) }} class="js-event-form">
+    {{ form_errors(form) }}
 
     <h1>
-        {{ form_errors(edit_form.name) }}
-        {{ form_widget(edit_form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
     </h1>
 
     <dl>
         <dt>where:</dt>
-        <dd>{{ form_errors(edit_form.location) }} {{ form_widget(edit_form.location) }}</dd>
+        <dd>{{ form_errors(form.location) }} {{ form_widget(form.location) }}</dd>
 
         <dt>when:</dt>
-        <dd>{{ form_errors(edit_form.time) }} {{ form_widget(edit_form.time) }}</dd>
+        <dd>{{ form_errors(form.time) }} {{ form_widget(form.time) }}</dd>
 
         <dt>what:</dt>
         <dd>
-            {{ form_errors(edit_form.details) }} {{ form_widget(edit_form.details) }}
+            {{ form_errors(form.details) }} {{ form_widget(form.details) }}
         </dd>
     </dl>
 
-    {{ form_rest(edit_form) }}
+    {{ form_rest(form) }}
 
     <button type="submit" class="button">Save</button>
 

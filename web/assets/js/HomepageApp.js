@@ -12,7 +12,7 @@
     $.extend(app.prototype, {
         initialize: function() {
             this.$wrapper.on('click', '.js-event-edit-link', $.proxy(this._handleEditClick, this));
-            this.$wrapper.on('submit', '.js-event-edit-form', $.proxy(this._handleEditFormSubmit, this));
+            this.$wrapper.on('submit', '.js-event-form', $.proxy(this._handleFormSubmit, this));
         },
 
         _handleEditClick: function(e) {
@@ -31,7 +31,7 @@
             });
         },
 
-        _handleEditFormSubmit: function(e) {
+        _handleFormSubmit: function(e) {
             e.preventDefault();
             var $form = $(e.currentTarget);
             var $event = $form.closest('.js-event-wrapper');

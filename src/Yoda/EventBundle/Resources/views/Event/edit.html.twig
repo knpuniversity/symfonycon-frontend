@@ -12,7 +12,9 @@
                 
             </header>
             <section>
-                {{ include('EventBundle:Event:_form.html.twig') }}
+                {{ include('EventBundle:Event:_form.html.twig', {
+                    'form': edit_form
+                }) }}
 
                 <form action="{{ path('event_delete', { 'id': entity.id }) }}" method="post">
                     {{ form_widget(delete_form) }}

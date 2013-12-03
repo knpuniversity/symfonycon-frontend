@@ -1,5 +1,17 @@
 {% extends 'EventBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/NewEventApp.js') }}"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            new NewEventApp($('.event-edit'));
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <section class="event-show event-edit">
         <header id="menu">
@@ -11,29 +23,7 @@
                 <img src="http://maps.googleapis.com/maps/api/staticmap?center=Somewhere,%20US&zoom=15&size=300x300&maptype=roadmap&sensor=false" />
             </header>
             <section>
-                <form action="{{ path('event_create') }}" method="post" {{ form_enctype(form) }}>
-                    <h1>
-                        {{ form_widget(form.name) }}
-                    </h1>
-
-                    <dl>
-                        <dt>where:</dt>
-                        <dd>{{ form_widget(form.location) }}</dd>
-
-                        <dt>when:</dt>
-                        <dd>{{ form_widget(form.time) }}</dd>
-
-                        <dt>what:</dt>
-                        <dd>
-                            {{ form_widget(form.details) }}
-                        </dd>
-                    </dl>
-
-                    {{ form_widget(form) }}
-
-                    <button type="submit" class="button">Save</button>
-
-                </form>
+                {{ include('EventBundle:Event:_form.html.twig') }}
             </section>
         </article>
     </section>
