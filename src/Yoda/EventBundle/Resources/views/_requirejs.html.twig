@@ -1,0 +1,9 @@
+<script src="{{ asset('assets/vendor/requirejs/require.js') }}"></script>
+<script>
+    require(['{{ asset('assets/js/common.js') }}'], function (common) {
+        //js/common sets the baseUrl to be js/ so
+        //can just ask for 'app/main1' here instead
+        //of 'js/app/main1'
+        require(['{{ data_main }}']);
+    });
+</script>

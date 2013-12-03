@@ -1,8 +1,4 @@
-/**
- * Application for the homepage editing functionality
- */
-(function($, window, undefined){
-
+define(['jquery'], function ($) {
     var app = function($eventsWrapper) {
         this.$wrapper = $eventsWrapper;
 
@@ -53,6 +49,5 @@
         }
     });
 
-    window.HomepageApp = app;
-
-})(jQuery, window);
+    return app;
+});

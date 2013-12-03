@@ -1,15 +1,11 @@
 {% extends 'EventBundle::layout.html.twig' %}
 
-{% block javascripts %}
+{% block requirejs %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/HomepageApp.js') }}"></script>
-
-    <script>
-        jQuery(document).ready(function() {
-            new HomepageApp($('.events'));
-        });
-    </script>
+    {{ include('EventBundle::_requirejs.html.twig', {
+        'data_main': 'app/homepage'
+    }) }}
 {% endblock %}
 
 {% block body %}
