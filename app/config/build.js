@@ -12,9 +12,9 @@
             //top level dependencies, "include" will find
             //nested dependencies.
             include: ['jquery', 'domReady', 'bootstrap']
-        }
+        },
 
-        /*
+
         //Now set up a build layer for each page, but exclude
         //the common one. "exclude" will exclude nested
         //the nested, built dependencies from "common". Any
@@ -25,11 +25,11 @@
         //require in the page*.js files.
         {
             //module names are relative to baseUrl/paths config
-            name: 'app/main1',
-            exclude: ['../common']
+            name: 'app/homepage',
+            exclude: ['common']
+        }
 
-        },
-
+        /*
         {
             //module names are relative to baseUrl
             name: '../page2',
