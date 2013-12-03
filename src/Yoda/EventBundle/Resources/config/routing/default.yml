@@ -1,0 +1,3 @@
+event_homepage:
+    pattern:  /hello/{firstName}/{count}
+    defaults: { _controller: EventBundle:Default:index }

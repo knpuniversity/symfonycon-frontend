@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<section class="main-block">
+    <article>
+        <section>
+            <h1>Register</h1>
+
+            <form action="{{ path('user_register') }}" method="POST" class="form-horizontal">
+
+                {{ form_errors(form) }}
+
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+
+                {#<div class="control-group{{ form.plainPassword.first.vars.errors|length > 0 ? ' error' : '' }}">#}
+                    {#{{ form_row(form.plainPassword.first, {#}
+                        {#'label': 'Password'#}
+                    {#}) }}#}
+                    {#{{ form_row(form.plainPassword.second, {#}
+                        {#'label': 'Repeat Password'#}
+                    {#}) }}#}
+                {#</div>#}
+                {{ form_row(form.plainPassword) }}
+
+                {{ form_rest(form) }}
+
+                <input type="submit" value="Register!" formnovalidate />
+            </form>
+
+        </section>
+    </article>
+</section>
+{% endblock %}

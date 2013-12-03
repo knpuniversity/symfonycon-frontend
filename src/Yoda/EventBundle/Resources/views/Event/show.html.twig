@@ -1,0 +1,79 @@
+{% extends 'EventBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <section class="event-show">
+        <header id="menu">
+            <a class="link" href="{{ path('event') }}">&larr; back to the events list</a>
+        </header>
+
+        <article>
+            <header class="map-container">
+                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.location | url_encode }}&markers=color:red%7Ccolor:red%7C{{ entity.location | url_encode }}&zoom=14&size=300x300&maptype=roadmap&sensor=false" />
+            </header>
+            <section>
+                <h1>
+                    {{ entity.name }}
+                    {% if app.user == entity.owner %}
+                        <a class="button" href="{{ path('event_edit', {'id': entity.id}) }}">edit</a>
+                    {% endif %}
+                </h1>
+
+                <dl>
+                    <dt>where:</dt>
+                    <dd>{{ entity.location }}</dd>
+
+                    <dt>when:</dt>
+                    <dd>{{ entity.time | date('g:ia / l M j, Y') }}</dd>
+
+                    <dt>what:</dt>
+                    <dd>{{ entity.details }}</dd>
+
+                    <dt>who:</dt>
+                    <dd>
+                        {{ entity.attendees|length }} attending!
+
+                        <ul class="users">
+                            {% for attendee in entity.attendees %}
+                                <li>{{ attendee }}</li>
+                            {% else %}
+                                <li>nobody yet!</li>
+                            {% endfor %}
+                        </ul>
+
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <a href="{{ path('event_unattend', {'id': entity.id}) }}" class="attend-toggle{{ entity.hasAttendee(app.user) ? '' : ' hidden' }}">Oh no! I can't go anymore!</a>
+                                <a href="{{ path('event_attend', {'id': entity.id}) }}" class="attend-toggle{{ entity.hasAttendee(app.user) ? ' hidden' : '' }}">I totally want to go!</a>
+                        {% endif %}
+                    </dd>
+                </dl>
+            </section>
+        </article>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery('.attend-toggle').click(function() {
+
+                $(this).siblings().show();
+                $(this).hide();
+
+                var url = $(this).attr('href')+'.json';
+
+                $.post(url, null, function(data) {
+                    if (data.attending) {
+                        $.growlUI('Awesome!', 'See you there!');
+                    } else {
+                        $.growlUI('Ah darn', 'We\'ll miss you!');
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

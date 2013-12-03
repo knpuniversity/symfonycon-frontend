@@ -1,0 +1,204 @@
+body {
+    background-image: url(../images/jedi.png), url(../images/bg.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 55px 20px, 0 0;
+}
+
+#menu {
+    height:40px;
+    margin-bottom:30px;
+    padding-left:162px;
+}
+
+#menu a.link {
+    color:#fff;
+    font-size:18px;
+    font-family:Arial;
+    padding:0px 4px;
+    position:relative;
+    text-decoration:none;
+}
+
+#menu a.link:after {
+    content:'/';
+    position:absolute;
+    right:-4px;
+    top:0px;
+    color:#ccc;
+}
+
+#menu a.link:last-child:after {
+    display:none;
+}
+
+#menu a.link:hover {
+    text-decoration:none;
+    color:#0ebb0e;
+}
+
+#menu a.button {
+    font-size:24px;
+    padding:10px 15px;
+}
+
+.button {
+    font-family:Arial;
+    background:#fff;
+    border:1px solid #ccc;
+    text-decoration:none;
+
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+    color: #fff;
+    border: solid 1px #333;
+    background: #363636;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5b5b5b), to(#151515));
+    background: -moz-linear-gradient(top,  #5b5b5b,  #151515);
+
+    border-radius:25px;
+}
+
+.button:hover {
+    text-decoration: none;
+    color: #0ebb0e;
+}
+
+.button:active {
+    background: #363636;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5b5b5b), to(#151515));
+    background: -moz-linear-gradient(top,  #5b5b5b,  #151515);
+    position: relative;
+}
+
+.main-block #menu {
+    padding-left:323px;
+    height:16px;
+    margin-bottom:-15px;
+}
+
+.main-block .button {
+    font-size:14px;
+    padding:3px 8px;
+}
+.main-block {
+    width:900px;
+    margin:50px auto;
+}
+
+.main-block article {
+    margin-bottom:20px;
+    float:left;
+    width:100%;
+}
+
+.main-block article .map-container {
+    float:left;
+    width:300px;
+    height:300px;
+    overflow:hidden;
+    border:6px solid #fff;
+    background:#fff;
+
+    -webkit-border-radius:150px;
+    -moz-border-radius:150px;
+    border-radius:150px;
+    -webkit-box-shadow:0px 0px 5px #ccc;
+    box-shadow:0px 0px 5px #ccc;
+}
+
+.main-block article .map-container img {
+    width:300px;
+    height:300px;
+
+    -webkit-border-radius:150px;
+    -moz-border-radius:150px;
+    border-radius:150px;
+}
+
+.main-block article section {
+    margin: 25px auto 0 auto;
+    width:560px;
+    padding:10px;
+    padding-bottom:20px;
+    background:#fff;
+    position:relative;
+
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+
+    -webkit-box-shadow:0px 0px 2px #ccc;
+    box-shadow:0px 0px 2px #ccc;
+}
+
+.main-block article section {
+    font-family:Tahoma;
+}
+
+.main-block article section * {
+    position:relative;
+}
+
+.main-block article section h1 {
+    margin:0px;
+    padding:0px;
+    padding-bottom:5px;
+    border-bottom:1px solid #eee;
+
+    color:#666666;
+    font-family:Tahoma;
+    font-weight:normal;
+    font-size:30px;
+    text-decoration:none;
+
+    display:block;
+    height:28px;
+
+    background:url(../images/pinpoint.png) no-repeat -5px 7px;
+    padding-left:30px;
+    padding-top:2px;
+    padding-bottom:15px;
+}
+
+.main-block article section dt {
+    font-size:24px;
+    color:#363636;
+    margin-bottom:10px;
+    font-family:Arial;
+}
+
+.main-block article section dd {
+    margin-bottom:15px;
+    margin-left:50px;
+    color:#666666;
+    font-weight:normal !important;
+}
+
+.main-block ul.users {
+    list-style:none;
+    margin:0px;
+    padding:0px;
+    padding-left:0px;
+    line-height:28px;
+}
+.main-block ul.users li {
+    float:left;
+    padding-right:10px;
+    color:#000;
+}
+
+.main-block ul.users li:after {
+    content:',';
+}
+
+.main-block ul.users li:last-child:after {
+    display:none;
+}
+
+div.growlUI { background: url('../images/check48.png') no-repeat 10px 10px }
+div.growlUI h1, div.growlUI h2 { color: white; padding: 5px 5px 5px 75px; text-align: left }
+div.growlUI h2 { font-size: medium }

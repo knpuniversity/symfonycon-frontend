@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<section class="main-block">
+    <article>
+        <section>
+            <h1>Event not found!</h1>
+
+            <div>But check out these other events...</div>
+        </section>
+    </article>
+</section>
+
+<section class="events">
+     {% render 'EventBundle:Event:_upcomingEvents' %}
+</section>
+{% endblock %}

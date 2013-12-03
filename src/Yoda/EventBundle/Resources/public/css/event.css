@@ -1,0 +1,190 @@
+.event-show #menu {
+    padding-left:323px;
+    height:16px;
+    margin-bottom:-15px;
+}
+
+.event-show .button {
+    font-size:14px;
+    padding:3px 8px;
+}
+.event-show {
+    width:900px;
+    margin:50px auto;
+}
+
+.event-show article {
+    margin-bottom:20px;
+    float:left;
+    width:100%;
+}
+
+.event-show article .map-container {
+    float:left;
+    width:300px;
+    height:300px;
+    overflow:hidden;
+    border:6px solid #fff;
+    background:#fff;
+
+    -webkit-border-radius:150px;
+       -moz-border-radius:150px;
+            border-radius:150px;
+    -webkit-box-shadow:0px 0px 5px #ccc;
+            box-shadow:0px 0px 5px #ccc;
+}
+
+.event-show article .map-container img {
+    width:300px;
+    height:300px;
+
+    -webkit-border-radius:150px;
+       -moz-border-radius:150px;
+            border-radius:150px;
+}
+
+.event-show article section {
+    margin-top:25px;
+    width:560px;
+    min-height:245px;
+    padding:10px;
+    padding-bottom:20px;
+    float:right;
+    background:#fff;
+    position:relative;
+
+    -webkit-border-radius:5px;
+           -moz-border-radius:5px;
+                border-radius:5px;
+
+    -webkit-box-shadow:0px 0px 2px #ccc;
+            box-shadow:0px 0px 2px #ccc;
+}
+
+.event-show article section:after {
+    content:'';
+    display:block;
+    position:absolute;
+    z-index:1;
+
+    top:105px;
+    left:0px;
+
+    width:30px;
+    height:40px;
+    background:#fff;
+}
+
+.event-show article section:before {
+    content:'';
+    display:block;
+    position:absolute;
+    z-index:1;
+
+    top:110px;
+    left:-15px;
+
+    width:30px;
+    height:30px;
+    background:#fff;
+
+    -webkit-transform:rotate(-45deg);
+       -moz-transform:rotate(-45deg);
+            transform:rotate(-45deg);
+
+    -webkit-box-shadow:0px 0px 2px #ccc;
+            box-shadow:0px 0px 2px #ccc;
+}
+
+.event-show article section {
+    font-family:Tahoma;
+}
+
+.event-show article section * {
+    z-index:2;
+    position:relative;
+}
+
+.event-show article section h1 {
+    margin:0px;
+    padding:0px;
+    padding-bottom:5px;
+    border-bottom:1px solid #eee;
+
+    color:#666666;
+    font-family:Tahoma;
+    font-weight:normal;
+    font-size:30px;
+    text-decoration:none;
+
+    display:block;
+    height:28px;
+
+    background:url(../images/pinpoint.png) no-repeat -5px 7px;
+    padding-left:30px;
+    padding-top:2px;
+    padding-bottom:15px;
+}
+
+.event-show article section dt {
+    font-size:24px;
+    color:#363636;
+    margin-bottom:10px;
+    font-family:Arial;
+}
+
+.event-show article section dd {
+    margin-bottom:15px;
+    margin-left:50px;
+    color:#666666;
+    font-weight:normal !important;
+}
+
+.event-show ul.users {
+    list-style:none;
+    margin:0px;
+    padding:0px;
+    padding-left:0px;
+    line-height:28px;
+}
+.event-show ul.users li {
+    float:left;
+    padding-right:10px;
+    color:#000;
+}
+
+.event-show ul.users li:after {
+    content:',';
+}
+
+.event-show ul.users li:last-child:after {
+    display:none;
+}
+
+.event-edit button.button {
+    float:left;
+    font-size:18px !important;
+    margin-top:30px;
+    margin-right:10px;
+}
+
+.event-edit input[type=text], .event-edit textarea {
+    width:450px;
+    border:1px solid #ccc;
+    -webkit-box-shadow:0px 0px 5px #ccc;
+            box-shadow:0px 0px 5px #ccc;
+    font-size:14px;
+    padding:5px;
+}
+
+.event-edit textarea {
+    height:200px;
+}
+
+.event-edit h1 input[type=text] {
+    float:left;
+    width:510px;
+}
+.event-show .hidden {
+    display: none;
+}

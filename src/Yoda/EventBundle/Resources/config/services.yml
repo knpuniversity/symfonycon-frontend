@@ -1,0 +1,14 @@
+services:
+    yoda_event.reporting.event_report_manager:
+        class: Yoda\EventBundle\Reporting\EventReportManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        calls:
+            - [ setLogger, ["@logger"]]
+
+    yoda_event.twig.event_extension:
+        class: Yoda\EventBundle\Twig\EventExtension
+        arguments: []
+        tags:
+            - { name: twig.extension }
+        public: false

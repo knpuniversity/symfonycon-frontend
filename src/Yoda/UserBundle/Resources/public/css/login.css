@@ -1,0 +1,40 @@
+.login {
+    width: 500px;
+    margin: 100px auto;
+}
+
+.login article {
+    padding: 50px;
+    background: #fff;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+
+.login article label {
+    display: -moz-inline-box;
+    display: inline-block;
+    width: 120px;
+    font-size: 24px;
+}
+.login article input[type="text"], .login article input[type="password"] {
+    border: 1px solid #ccc;
+    font-size: 24px;
+    padding: 5px;
+    width: 264px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
+.login article input[type="submit"] {
+    float: right;
+}
+.login .error {
+    background-color: #ff6666;
+    color: #333;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}

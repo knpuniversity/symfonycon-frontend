@@ -1,0 +1,46 @@
+{% extends 'EventBundle::layout.html.twig' %}
+
+{% block body %}
+    <section class="event-show event-edit">
+        <header id="menu">
+            <a class="link" href="{{ path('event') }}">&larr; back to the event list</a>
+            <a class="link" href="{{ path('event_show', {'slug': entity.slug}) }}">show event</a>
+        </header>
+
+        <article>
+            <header class="map-container">
+                
+            </header>
+            <section>
+                <form action="{{ path('event_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                    <h1>
+                        {{ form_widget(edit_form.name) }}
+                    </h1>
+
+                    <dl>
+                        <dt>where:</dt>
+                        <dd>{{ form_widget(edit_form.location) }}</dd>
+
+                        <dt>when:</dt>
+                        <dd>{{ form_widget(edit_form.time) }}</dd>
+
+                        <dt>what:</dt>
+                        <dd>
+                            {{ form_widget(edit_form.details) }}
+                        </dd>
+                    </dl>
+
+                    {{ form_widget(edit_form) }}
+
+                    <button type="submit" class="button">Save</button>
+
+                </form>
+
+                <form action="{{ path('event_delete', { 'id': entity.id }) }}" method="post">
+                    {{ form_widget(delete_form) }}
+                    <button type="submit" class="button">Delete</button>
+                </form>
+            </section>
+        </article>
+    </section>
+{% endblock %}
