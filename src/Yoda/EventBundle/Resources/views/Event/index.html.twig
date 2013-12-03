@@ -1,5 +1,17 @@
 {% extends 'EventBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            new HomepageApp($('.events'));
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
 
     <section class="events">

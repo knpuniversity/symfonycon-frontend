@@ -11,7 +11,7 @@
     <article>
 
         {% if error %}
-        <div class="error">{{ error.message|trans }}</div>
+        <div class="alert alert-danger">{{ error.message|trans }}</div>
         {% endif %}
 
         <form action="{{ path('login_check') }}" method="post">
@@ -29,7 +29,7 @@
                 <input type="hidden" name="_target_path" value="/account" />
             #}
 
-            <button type="submit">login</button>
+            <button type="submit" class="btn">login</button>
         </form>
 
     </article>

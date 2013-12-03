@@ -89,6 +89,9 @@
     z-index:2;
     position:relative;
 }
+.events article section .edit-tools {
+    z-index:5;
+}
 
 .events article section h3 {
     margin:0px;
@@ -134,4 +137,8 @@
     width:440px;
     margin-left:60px;
     margin-bottom:3px;
+}
+.js-event-wrapper.editing {
+    background: #fff;
+    padding: 10px;
 }

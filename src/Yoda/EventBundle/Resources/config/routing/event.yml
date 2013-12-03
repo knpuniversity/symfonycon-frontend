@@ -16,12 +16,12 @@ event_create:
     requirements: { _method: post }
 
 event_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "EventBundle:Event:edit" }
+    pattern:  /{id}/edit.{_format}
+    defaults: { _controller: "EventBundle:Event:edit", _format:html }
 
 event_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "EventBundle:Event:update" }
+    pattern:  /{id}/update.{_format}
+    defaults: { _controller: "EventBundle:Event:update", _format:html }
     requirements: { _method: post }
 
 event_delete:

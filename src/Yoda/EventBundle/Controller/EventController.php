@@ -2,6 +2,7 @@
 
 namespace Yoda\EventBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use Yoda\EventBundle\Entity\Event;
@@ -79,7 +80,7 @@ class EventController extends Controller
     {
         $entity  = new Event();
         $form = $this->createForm(new EventType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             // this works
@@ -94,6 +95,8 @@ class EventController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $request->getSession()->getFlashBag()->add('success', 'Event saved!');
+
             return $this->redirect($this->generateUrl('event_show', array('slug' => $entity->getSlug())));
         }
 
@@ -107,7 +110,7 @@ class EventController extends Controller
      * Displays a form to edit an existing Event entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -121,6 +124,18 @@ class EventController extends Controller
 
         $editForm = $this->createForm(new EventType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+
+        if ($request->getRequestFormat() == 'json') {
+            // a very cheap/ugly JSON endpoint that actually returns the HTML form
+            $data = array(
+                'form' => $this->renderView('EventBundle:Event:_form.html.twig', array(
+                    'edit_form' => $editForm->createView(),
+                    'entity' => $entity
+                ))
+            );
+
+            return new JsonResponse($data);
+        }
 
         return $this->render('EventBundle:Event:edit.html.twig', array(
             'entity'      => $entity,
@@ -147,13 +162,40 @@ class EventController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new EventType(), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
+
+        $isJson = $request->getRequestFormat() == 'json';
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
+            // really short-sighted JSON endpoint
+            if ($isJson) {
+                return new JsonResponse(array(
+                    'success' => true,
+                    'event_html' => $this->renderView('EventBundle:Event:_event.html.twig', array(
+                        'entity' => $entity
+                    ))
+                ));
+            }
+
+            $request->getSession()->getFlashBag()->add('success', 'Event saved!');
+
             return $this->redirect($this->generateUrl('event_edit', array('id' => $id)));
+        }
+
+        if ($isJson) {
+            // a very cheap/ugly JSON endpoint that actually returns the HTML form
+            $data = array(
+                'success' => false,
+                'form' => $this->renderView('EventBundle:Event:_form.html.twig', array(
+                    'edit_form' => $editForm->createView(),
+                    'entity' => $entity
+                )),
+            );
+
+            return new JsonResponse($data);
         }
 
         return $this->render('EventBundle:Event:edit.html.twig', array(
@@ -170,7 +212,7 @@ class EventController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -281,11 +323,25 @@ class EventController extends Controller
         ;
     }
 
+    /**
+     * Simple function to enforce security - should be abstracted into a voter
+     * Simple function to enforce security - should be abstracted into a voter
+     *
+     * @param Event $event
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     private function checkOwnerSecurity(Event $event)
     {
         $user = $this->getUser();
-        if ($user != $event->getOwner()) {
-            throw new AccessDeniedException('You are not the owner!!!');
+
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return;
         }
+
+        if ($user == $event->getOwner()) {
+            return;
+        }
+
+        throw new AccessDeniedException('You are not the owner!!!');
     }
 }

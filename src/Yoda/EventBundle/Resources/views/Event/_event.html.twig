@@ -1,0 +1,27 @@
+<article class="js-event-wrapper">
+    <header class="map-container">
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.location | url_encode }}&markers=color:red%7Ccolor:red%7C{{ entity.location | url_encode }}&zoom=14&size=150x150&maptype=roadmap&sensor=false" />
+    </header>
+    <section>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('event_edit', {'id': entity.id}) }}" class="js-event-edit-link edit-tools pull-right">(edit)</a>
+        {% endif %}
+        <h3>
+            <a href="{{ path('event_show', {'slug': entity.slug}) }}">{{ entity.name }}</a>
+        </h3>
+
+        <dl>
+            <dt>where:</dt>
+            <dd>{{ entity.location }}</dd>
+
+            <dt>when:</dt>
+            <dd>{{ entity.time | date('g:ia / l M j, Y') }}</dd>
+
+            <dt>who:</dt>
+            <dd>{{ entity.attendees|length }} attending!</dd>
+
+            <dt>posted:</dt>
+            <dd>{{ entity.created|ago }}</dd>
+        </dl>
+    </section>
+</article>
