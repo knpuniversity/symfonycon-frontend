@@ -31,3 +31,9 @@ Optimization
 
 - npm --init
 - npm install requirejs --save-dev
+- create a build.js file
+    - common.js is special, because it doesn't have any dependencies to
+        read - we're basically abusing it
+- ./node_modules/.bin/r.js -o app/config/build.js
+- temporarily added a path to js-built inside Twig
+- added more items to common.js beyond just jQuery
