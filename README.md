@@ -25,3 +25,9 @@ RequireJS
   this - it's being brought in too early (or something)
 - bower install requirejs-domready --save
 - organized things into pages and modules
+
+Optimization
+------------
+
+- npm --init
+- npm install requirejs --save-dev
