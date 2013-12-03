@@ -10,6 +10,7 @@ requirejs.config({
     paths: {
         app: 'app',
         domReady: '../vendor/requirejs-domready/domReady',
-        jquery: '../vendor/jquery/jquery.min'
+        jquery: '../vendor/jquery/jquery.min',
+        bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min'
     }
 });

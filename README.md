@@ -24,3 +24,4 @@ RequireJS
   using define() to add itself as a module. But, I believe you can't do
   this - it's being brought in too early (or something)
 - bower install requirejs-domready --save
+- organized things into pages and modules

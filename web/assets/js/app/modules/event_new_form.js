@@ -1,8 +1,4 @@
-/**
- * Application for the new event form page
- */
-(function($, window, undefined){
-
+define(['jquery', 'bootstrap'], function ($) {
     var app = function($eventsWrapper) {
         this.$wrapper = $eventsWrapper;
 
@@ -11,7 +7,6 @@
 
     $.extend(app.prototype, {
         initialize: function() {
-            console.log(this.$wrapper);
             this.$wrapper.on('submit', '.js-event-form', $.proxy(this._handleFormSubmit, this));
         },
 
@@ -50,6 +45,5 @@
         }
     });
 
-    window.NewEventApp = app;
-
-})(jQuery, window);
+    return app;
+});

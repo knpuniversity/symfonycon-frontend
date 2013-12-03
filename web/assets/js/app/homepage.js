@@ -1,3 +1,3 @@
-define(['jquery', 'domReady!', 'app/modules/events_edit'], function ($, doc, EventsEdit) {
+define(['jquery', 'domReady!', 'app/modules/events_inline_edit'], function ($, doc, EventsEdit) {
     var eventsEdit = new EventsEdit($('.events'));
 });

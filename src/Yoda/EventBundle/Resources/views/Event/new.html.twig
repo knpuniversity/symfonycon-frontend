@@ -1,15 +1,11 @@
 {% extends 'EventBundle::layout.html.twig' %}
 
-{% block javascripts %}
+{% block requirejs %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/NewEventApp.js') }}"></script>
-
-    <script>
-        jQuery(document).ready(function() {
-            new NewEventApp($('.event-edit'));
-        });
-    </script>
+    {{ include('EventBundle::_requirejs.html.twig', {
+        'data_main': 'app/event_new'
+    }) }}
 {% endblock %}
 
 {% block body %}
