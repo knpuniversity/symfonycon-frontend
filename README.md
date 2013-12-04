@@ -38,4 +38,4 @@ Optimization
 - temporarily added a path to js-built inside Twig
 - added more items to common.js beyond just jQuery
 - optimized a single page
-    PPP common.js is still pointing to the "js" directory, not js-built!
+- changed the baseUrl to load the compiled stuff correctly
