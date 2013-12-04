@@ -1,8 +1,9 @@
 ({
     mainConfigFile: '../../web/assets/js/common.js',
-    appDir: '../../web/assets/js',
-    baseUrl: './',
-    dir: '../../web/assets/js-built',
+    appDir: '../../web/assets',
+    baseUrl: './js',
+    dir: '../../web/assets-built',
+    optimizeCss: "none",
     modules: [
         //First set up the common build layer.
         {

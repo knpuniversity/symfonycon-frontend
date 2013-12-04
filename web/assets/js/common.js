@@ -6,7 +6,6 @@
 //except for 'app' ones, which are in a sibling
 //directory.
 requirejs.config({
-    baseUrl: 'assets/js',
     paths: {
         app: 'app',
         domReady: '../vendor/requirejs-domready/domReady',

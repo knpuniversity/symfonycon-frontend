@@ -1,9 +1,15 @@
-<script src="{{ asset('assets/vendor/requirejs/require.js') }}"></script>
+{% set useCompiled = true %}
+{% set assetsPath = 'assets'~(useCompiled ? '-built') %}
+
+<script src="{{ asset(assetsPath~'/vendor/requirejs/require.js') }}"></script>
 <script>
-    require(['{{ asset('assets/js/common.js') }}'], function (common) {
-        //js/common sets the baseUrl to be js/ so
-        //can just ask for 'app/main1' here instead
-        //of 'js/app/main1'
+
+    // let the baseUrl be dynamic so we can use the compiled assets when needed
+    requirejs.config({
+        baseUrl: '{{ assetsPath }}/js'
+    });
+
+    require(['common'], function (common) {
         require(['{{ data_main }}']);
     });
 </script>
