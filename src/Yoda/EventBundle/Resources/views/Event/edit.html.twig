@@ -1,5 +1,11 @@
 {% extends 'EventBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/css/event_form.css') }}"/>
+{% endblock %}
+
 {% block body %}
     <section class="event-show event-edit">
         <header id="menu">

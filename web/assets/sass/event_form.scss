@@ -1,0 +1,8 @@
+/*
+ * Special CSS file for event form page
+ */
+
+@import "base";
+
+/* just as a test, make the inputs super-rounded */
+.form-group input, .form-group textarea   { @include border-radius(20px, 20px); }
