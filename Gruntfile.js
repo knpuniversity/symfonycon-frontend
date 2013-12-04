@@ -3,17 +3,19 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    // some configuration for us to use
     appDir: 'web/assets',
-    targetDir: 'web/assets-built',
+    builtDir: 'web/assets-built',
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
         expand: true,
-        cwd: '<%= appDir %>/js',
+        cwd: '<%= builtDir %>',
         src: '*.js',
-        dest: '<%= targetDir %>/js'
+        dest: '<%= builtDir %>'
       }
     },
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -31,10 +33,10 @@ module.exports = function(grunt) {
     requirejs: {
       main: {
         options: {
-            mainConfigFile: 'web/assets/js/common.js',
-            appDir: 'web/assets',
+            mainConfigFile: '<%= appDir %>/js/common.js',
+            appDir: '<%= appDir %>',
             baseUrl: './js',
-            dir: 'web/assets-built',
+            dir: '<%= builtDir %>',
             optimizeCss: "none",
             modules: [
                 //First set up the common build layer.
