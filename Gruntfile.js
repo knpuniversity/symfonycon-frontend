@@ -15,11 +15,24 @@ module.exports = function(grunt) {
         src: '*.js',
         dest: '<%= targetDir %>/js'
       }
+    },
+    // Make sure code styles are up to par and there are no obvious mistakes
+    jshint: {
+      options: {
+        //jshintrc: '.jshintrc',
+        //reporter: require('jshint-stylish')
+      },
+      all: [
+        'Gruntfile.js',
+        '<%= appDir %>/js/{,*/}*.js'
+      ]
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
 
   // Default task(s).
   grunt.registerTask('default', ['uglify']);

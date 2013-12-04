@@ -51,3 +51,11 @@ Grunt
     "grunt-contrib-uglify": "~0.2.2"
 - brought in the base Gruntfile.js, which just uses uglify
 - running grunt -v
+- added jshint to grunt
+    grunt jshint -v
+- realized that all (many?) tasks have sub-parts
+    grunt uglify:foo
+    grunt jshint:test
+
+    These would look for the "foo" and "test" keys under each config. These
+    function like separate config "profiles".
