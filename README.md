@@ -59,3 +59,17 @@ Grunt
 
     These would look for the "foo" and "test" keys under each config. These
     function like separate config "profiles".
+- npm install grunt-contrib-requirejs --save-dev
+
+Compass
+-------
+
+- grab bootstrap-sass via bower
+- install compass via npm
+    - sudo npm install -g compass
+    --> check this
+- compile manually
+    compass compile --css-dir=web/assets/compiled --sass-dir=web/assets/vendor/sass-bootstrap/lib
+
+QQ) How did it know to only compile bootstrap.scss? Is it because all the
+    other files start with an undescore?

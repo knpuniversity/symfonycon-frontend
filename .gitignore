@@ -11,4 +11,4 @@
 /composer.phar
 /web/assets-built
 /node_modules
-
+/.sass-cache
