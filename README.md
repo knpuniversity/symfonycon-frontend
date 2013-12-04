@@ -62,6 +62,8 @@ Grunt
 - npm install grunt-contrib-requirejs --save-dev
 - added the requirejs with a copy-and-paste config from our build.js
 - npm install jshint-stylish --save-dev
+- removed requirejs uglification and used the uglify task
+- made a default task to run everything!
 
 Compass
 -------
@@ -72,6 +74,8 @@ Compass
     --> check this
 - compile manually
     compass compile --css-dir=web/assets/compiled --sass-dir=web/assets/vendor/sass-bootstrap/lib
-
-QQ) How did it know to only compile bootstrap.scss? Is it because all the
-    other files start with an undescore?
+- cool "partials" stuff
+- created a _base.scss and a layout.scsc. Converted all CSS files to
+    scss partials and imported from layout.scss. Pointed directly to a CSS file
+- compile it again!
+    compass compile --css-dir=web/assets/css --sass-dir=web/assets/sass

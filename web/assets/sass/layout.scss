@@ -1,3 +1,12 @@
+/*
+ * Represents the main "layout" CSS file
+ */
+
+@import "base";
+@import "../vendor/sass-bootstrap/lib/bootstrap";
+@import "event";
+@import "events";
+
 body {
     background-image: url(../images/jedi.png), url(../images/bg.png);
     background-repeat: no-repeat, repeat;

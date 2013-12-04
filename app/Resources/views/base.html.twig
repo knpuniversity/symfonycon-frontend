@@ -13,17 +13,8 @@
         {% block requirejs %}{% endblock %}
 
         {% block stylesheets %}
-
-            {% stylesheets
-                    'bundles/event/css/event.css'
-                    'bundles/event/css/events.css'
-                    'bundles/event/css/main.css'
-                    'assets/vendor/bootstrap/dist/css/bootstrap.css'
-                    'assets/vendor/bootstrap/dist/css/bootstrap-theme.css'
-                    output='css/generated/layout.css'
-                %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
+            {# todo - put in the code to dynamically go to assets-built #}
+            <link rel="stylesheet" href="{{ asset('assets/css/layout.css') }}"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>

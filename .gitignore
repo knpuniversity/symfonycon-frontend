@@ -12,3 +12,5 @@
 /web/assets-built
 /node_modules
 /.sass-cache
+/web/assets/css
+!web/assets/css/README.txt
