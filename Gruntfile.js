@@ -12,10 +12,33 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        expand: true,
-        cwd: '<%= builtDir %>',
-        src: '*.js',
-        dest: '<%= builtDir %>'
+        /*
+         * I'm not sure if finding files recursively is possible. This is
+         * a bit ugly, but it accomplishes the task of finding all files
+         * in the built directory (that we want) and uglifying them
+         *
+         * https://github.com/gruntjs/grunt-contrib-uglify/issues/23
+         */
+        files: [
+            {
+                expand: true,
+                cwd: '<%= builtDir %>',
+                src: 'js/*.js',
+                dest: '<%= builtDir %>'
+            },
+            {
+                expand: true,
+                cwd: '<%= builtDir %>',
+                src: 'js/app/*.js',
+                dest: '<%= builtDir %>'
+            },
+            {
+                expand: true,
+                cwd: '<%= builtDir %>',
+                src: 'js/app/modules/*.js',
+                dest: '<%= builtDir %>'
+            }
+        ]
       }
     },
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -36,7 +59,10 @@ module.exports = function(grunt) {
             appDir: '<%= appDir %>',
             baseUrl: './js',
             dir: '<%= builtDir %>',
+            // will be taken care of with compass
             optimizeCss: "none",
+            // will be taken care of with an uglify task directly
+            optimize: "none",
             modules: [
                 //First set up the common build layer.
                 {
@@ -85,6 +111,6 @@ module.exports = function(grunt) {
 
 
   // Default task(s).
-  //grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['jshint', 'requirejs', 'uglify']);
 
 };

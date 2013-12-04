@@ -60,6 +60,8 @@ Grunt
     These would look for the "foo" and "test" keys under each config. These
     function like separate config "profiles".
 - npm install grunt-contrib-requirejs --save-dev
+- added the requirejs with a copy-and-paste config from our build.js
+- npm install jshint-stylish --save-dev
 
 Compass
 -------
