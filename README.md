@@ -79,3 +79,5 @@ Compass
     scss partials and imported from layout.scss. Pointed directly to a CSS file
 - compile it again!
     compass compile --css-dir=web/assets/css --sass-dir=web/assets/sass
+- or watch it!
+    compass watch --css-dir=web/assets/css --sass-dir=web/assets/sass
