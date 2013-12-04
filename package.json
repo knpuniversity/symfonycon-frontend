@@ -4,9 +4,9 @@
   "description": "NOTES =====",
   "main": "index.js",
   "dependencies": {
-    "requirejs": "~2.1.9"
   },
   "devDependencies": {
+    "requirejs": "~2.1.9"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
