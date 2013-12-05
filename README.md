@@ -84,3 +84,5 @@ Compass
 - created a config.rb file by running "compass init"
 - struggling with the config.rb file!
 - npm install grunt-contrib-compass --save-dev
+- configured compass to take care of our sass files
+- npm install grunt-contrib-watch --save-dev

@@ -1,5 +1,28 @@
 module.exports = function (grunt) {
 
+    // store the pattern to our JS files
+    // see http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
+    var jsFiles = [
+        {
+            expand: true,
+            cwd: '<%= builtDir %>',
+            src: 'js/*.js',
+            dest: '<%= builtDir %>'
+        },
+        {
+            expand: true,
+            cwd: '<%= builtDir %>',
+            src: 'js/app/*.js',
+            dest: '<%= builtDir %>'
+        },
+        {
+            expand: true,
+            cwd: '<%= builtDir %>',
+            src: 'js/app/modules/*.js',
+            dest: '<%= builtDir %>'
+        }
+    ];
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -19,26 +42,7 @@ module.exports = function (grunt) {
                  *
                  * https://github.com/gruntjs/grunt-contrib-uglify/issues/23
                  */
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= builtDir %>',
-                        src: 'js/*.js',
-                        dest: '<%= builtDir %>'
-                    },
-                    {
-                        expand: true,
-                        cwd: '<%= builtDir %>',
-                        src: 'js/app/*.js',
-                        dest: '<%= builtDir %>'
-                    },
-                    {
-                        expand: true,
-                        cwd: '<%= builtDir %>',
-                        src: 'js/app/modules/*.js',
-                        dest: '<%= builtDir %>'
-                    }
-                ]
+                files: jsFiles
             }
         },
         // Make sure code styles are up to par and there are no obvious mistakes
@@ -119,6 +123,25 @@ module.exports = function (grunt) {
                     outputStyle: 'expanded'
                 }
             }
+        },
+
+        watch: {
+            /*
+            scripts: {
+                files: jsFiles,
+                tasks: ['jshint'],
+                options: {
+                    spawn: false
+                }
+            },
+            */
+            compass: {
+                files: '<%= appDir %>/sass/*.scss',
+                tasks: ['compass:dev'],
+                options: {
+                    spawn: false
+                }
+            }
         }
 
     });
@@ -128,6 +151,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // the default task is for dev mode
     grunt.registerTask('default', ['jshint', 'compass:dev']);
