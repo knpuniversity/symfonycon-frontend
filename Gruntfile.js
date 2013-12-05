@@ -108,13 +108,15 @@ module.exports = function (grunt) {
                 options: {
                     sassDir: '<%= builtDir %>/sass',
                     cssDir: '<%= builtDir %>/css',
-                    environment: 'production'
+                    environment: 'production',
+                    outputStyle: 'compressed'
                 }
             },
             dev: {
                 options: {
                     sassDir: '<%= appDir %>/sass',
-                    cssDir: '<%= appDir %>/css'
+                    cssDir: '<%= appDir %>/css',
+                    outputStyle: 'expanded'
                 }
             }
         }
