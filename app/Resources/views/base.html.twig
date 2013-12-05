@@ -10,7 +10,11 @@
             {%- endif -%}
         </title>
 
-        {% block requirejs %}{% endblock %}
+        {% block requirejs %}
+            {{ include('EventBundle::_requirejs.html.twig', {
+                module: false
+            }) }}
+        {% endblock %}
 
         {% block stylesheets %}
             {# todo - put in the code to dynamically go to assets-built #}

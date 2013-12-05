@@ -6,7 +6,9 @@
         baseUrl: '{{ assetsPath }}/js'
     });
 
-    require(['common'], function (common) {
-        require(['{{ data_main }}']);
+    require(['common', 'app/default'], function (common) {
+        {% if module %}
+            require(['{{ module }}']);
+        {% endif %}
     });
 </script>

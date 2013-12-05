@@ -4,7 +4,7 @@
     {{ parent() }}
 
     {{ include('EventBundle::_requirejs.html.twig', {
-        'data_main': 'app/homepage'
+        'module': 'app/homepage'
     }) }}
 {% endblock %}
 

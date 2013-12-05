@@ -4,7 +4,7 @@
     {{ parent() }}
 
     {{ include('EventBundle::_requirejs.html.twig', {
-        'data_main': 'app/event_new'
+        'module': 'app/event_new'
     }) }}
 {% endblock %}
 
