@@ -14,7 +14,7 @@
 
         {% block stylesheets %}
             {# todo - put in the code to dynamically go to assets-built #}
-            <link rel="stylesheet" href="{{ asset('assets/css/layout.css') }}"/>
+            <link rel="stylesheet" href="{{ asset(assetsPath~'/css/layout.css') }}"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>

@@ -30,6 +30,8 @@ twig:
     form:
         resources:
             - "::forms.html.twig"
+    globals:
+        assetsPath: 'assets-built'
 
 # Assetic Configuration
 assetic:
