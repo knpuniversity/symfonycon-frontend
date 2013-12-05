@@ -1,26 +1,12 @@
 module.exports = function (grunt) {
 
-    // store the pattern to our JS files
-    // see http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
-    var jsFiles = [
-        {
-            expand: true,
-            cwd: '<%= builtDir %>',
-            src: 'js/*.js',
-            dest: '<%= builtDir %>'
-        },
-        {
-            expand: true,
-            cwd: '<%= builtDir %>',
-            src: 'js/app/*.js',
-            dest: '<%= builtDir %>'
-        },
-        {
-            expand: true,
-            cwd: '<%= builtDir %>',
-            src: 'js/app/modules/*.js',
-            dest: '<%= builtDir %>'
-        }
+    var builtDir = 'web/assets-built';
+
+    // globs where our JS files are found
+    var jsFilePaths = [
+        'js/*.js',
+        'js/app/*.js',
+        'js/app/modules/*.js'
     ];
 
     // Project configuration.
@@ -29,7 +15,7 @@ module.exports = function (grunt) {
 
         // some configuration for us to use
         appDir: 'web/assets',
-        builtDir: 'web/assets-built',
+        builtDir: builtDir,
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -38,11 +24,27 @@ module.exports = function (grunt) {
                 /*
                  * I'm not sure if finding files recursively is possible. This is
                  * a bit ugly, but it accomplishes the task of finding all files
-                 * in the built directory (that we want) and uglifying them
+                 * in the built directory (that we want) and uglifying them.
+                 *
+                 * Additionally, I created a little self-executing function
+                 * here so that I could re-use the jsFilePaths from above
                  *
                  * https://github.com/gruntjs/grunt-contrib-uglify/issues/23
                  */
-                files: jsFiles
+                files: (function() {
+
+                    var files = [];
+                    jsFilePaths.forEach(function(val) {
+                        files.push({
+                            expand: true,
+                            cwd: builtDir,
+                            src: val,
+                            dest: builtDir
+                        });
+                    });
+
+                    return files;
+                })()
             }
         },
         // Make sure code styles are up to par and there are no obvious mistakes
@@ -126,15 +128,21 @@ module.exports = function (grunt) {
         },
 
         watch: {
-            /*
             scripts: {
-                files: jsFiles,
+                // self executing function to reuse jsFilePaths, but prefix each with appDir
+                files: (function() {
+                    var files = [];
+                    jsFilePaths.forEach(function(val) {
+                        files.push('<%= appDir %>/'+val);
+                    });
+
+                    return files;
+                })(),
                 tasks: ['jshint'],
                 options: {
                     spawn: false
                 }
             },
-            */
             compass: {
                 files: '<%= appDir %>/sass/*.scss',
                 tasks: ['compass:dev'],
