@@ -81,3 +81,5 @@ Compass
     compass compile --css-dir=web/assets/css --sass-dir=web/assets/sass
 - or watch it!
     compass watch --css-dir=web/assets/css --sass-dir=web/assets/sass
+- created a config.rb file by running "compass init"
+- struggling with the config.rb file!
