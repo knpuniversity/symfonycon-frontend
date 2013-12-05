@@ -11,7 +11,8 @@
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-requirejs": "~0.4.1",
-    "jshint-stylish": "~0.1.4"
+    "jshint-stylish": "~0.1.4",
+    "grunt-contrib-compass": "~0.6.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

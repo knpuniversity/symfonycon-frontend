@@ -101,16 +101,35 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+
+        compass: {
+            dist: {
+                options: {
+                    sassDir: '<%= builtDir %>/sass',
+                    cssDir: '<%= builtDir %>/css',
+                    environment: 'production'
+                }
+            },
+            dev: {
+                options: {
+                    sassDir: '<%= appDir %>/sass',
+                    cssDir: '<%= appDir %>/css'
+                }
+            }
         }
+
     });
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-compass');
 
+    // the default task is for dev mode
+    grunt.registerTask('default', ['jshint', 'compass:dev']);
 
-    // Default task(s).
-    grunt.registerTask('default', ['jshint', 'requirejs', 'uglify']);
-
+    // register a "production" task that sets everything up
+    grunt.registerTask('production', ['jshint', 'requirejs', 'uglify', 'compass:dist']);
 };
