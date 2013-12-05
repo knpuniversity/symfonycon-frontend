@@ -86,3 +86,10 @@ Compass
 - npm install grunt-contrib-compass --save-dev
 - configured compass to take care of our sass files
 - npm install grunt-contrib-watch --save-dev
+- hooked up the watch with compasss and jshint
+
+Environments
+------------
+
+- Added a staging environment that looks at our assets-built
+
