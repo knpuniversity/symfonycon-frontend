@@ -47,7 +47,6 @@ Grunt
 - added the grunt dependencies to package.json
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.6.3",
-    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.2"
 - brought in the base Gruntfile.js, which just uses uglify
 - running grunt -v
