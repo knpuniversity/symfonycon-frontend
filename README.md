@@ -18,14 +18,14 @@ explains what you should expect to see and where.
 
 1. Install the Composer vendors (download Composer first from http://getcomposer.org)
 
-```
-php composer.phar install
-```
+    ```
+    php composer.phar install
+    ```
 
-Follow the instructions at the end to make sure that you have the parameters.yml
-file setup.
+    Follow the instructions at the end to make sure that you have the parameters.yml
+    file setup.
 
-2. Make sure you DB is present and populated!
+1. Make sure you DB is present and populated!
 
 ```
 php app/console doctrine:database:create
