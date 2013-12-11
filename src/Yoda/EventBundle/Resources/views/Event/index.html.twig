@@ -1,8 +1,6 @@
 {% extends 'EventBundle::layout.html.twig' %}
 
 {% block requirejs %}
-    {{ parent() }}
-
     {{ include('EventBundle::_requirejs.html.twig', {
         'module': 'app/homepage'
     }) }}
