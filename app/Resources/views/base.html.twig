@@ -10,28 +10,42 @@
             {%- endif -%}
         </title>
 
+        {#
+            This replaces the javascripts block. Required modules are added
+            to the dom as script tags with the async attribute. This means
+            that only the actual require.js file is "blocking" (except for IE9 and earlier),
+            and it's *less* important to have JavaScripts in the footer.
+            Additionally, putting them here (which will cause *some* blocking),
+            could cause your JavaScript to start responding faster since
+            it begins downloading earlier.
+
+            Usage in children templates (notice you don't need to call parent()),
+            since the app/default module is *always* loaded in _requirejs.html.twig.
+
+            {% block requirejs %}
+                {{ include('EventBundle::_requirejs.html.twig', {
+                    module: 'app/mypage'
+                }) }}
+            {% endblock %}
+        #}
         {% block requirejs %}
             {{ include('EventBundle::_requirejs.html.twig', {
                 module: false
             }) }}
         {% endblock %}
 
+        {#
+            Traditional stylesheets block, except we use the assetsPath variable setup in config.yml
+        #}
         {% block stylesheets %}
-            {# todo - put in the code to dynamically go to assets-built #}
             <link rel="stylesheet" href="{{ asset(assetsPath~'/css/layout.css') }}"/>
         {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% if app.session.flashBag.has('success') %}
-            <div class="alert alert-success">
-                {% for msg in app.session.flashBag.get('success') %}
-                    {{ msg }}
-                {% endfor %}
-            </div>
-        {% endif %}
-
         {% block body %}{% endblock %}
+
         {% block javascripts %}
             {#
                     'assets/vendor/bootstrap/dist/js/bootstrap.js'
