@@ -51,29 +51,3 @@
         </article>
     </section>
 {% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery('.attend-toggle').click(function() {
-
-                $(this).siblings().show();
-                $(this).hide();
-
-                var url = $(this).attr('href')+'.json';
-
-                $.post(url, null, function(data) {
-                    if (data.attending) {
-                        $.growlUI('Awesome!', 'See you there!');
-                    } else {
-                        $.growlUI('Ah darn', 'We\'ll miss you!');
-                    }
-                });
-
-                return false;
-            });
-        });
-    </script>
-{% endblock %}
