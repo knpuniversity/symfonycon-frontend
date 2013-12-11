@@ -1,21 +1,24 @@
 module.exports = function (grunt) {
 
-    // globs where our JS files are found
+    // globs where our JS files are found - used below in uglify and watch
     var jsFilePaths = [
         'js/*.js',
         'js/app/*.js',
         'js/app/modules/*.js'
     ];
 
-    // Project configuration.
+    // Project configuration
     grunt.initConfig({
+        // you can read in JSON files, which are then set as objects. We use this below with banner
         pkg: grunt.file.readJSON('package.json'),
 
-        // some configuration for us to use
+        // setup some variables that we'll use below
         appDir: 'web/assets',
         builtDir: 'web/assets-built',
+
         uglify: {
             options: {
+                // a cute way to put a banner on each uglified file
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
