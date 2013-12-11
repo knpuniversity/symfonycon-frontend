@@ -1,3 +1,11 @@
+/**
+ * Imported from layout.scss
+ *
+ * Because this starts with an _, it's a partial, and won't be (and isn't
+ * meant to be) compiled to a CSS file. Instead, CSS in here will be inside
+ * the layout.css file. This is in its own file purely for convenience.
+ */
+
 .event-show #menu {
     padding-left:323px;
     height:16px;
