@@ -27,77 +27,79 @@ explains what you should expect to see and where.
 
 1. Make sure you DB is present and populated!
 
-```
-php app/console doctrine:database:create
-php app/console doctrine:schema:create
-php app/console doctrine:fixtures:load
-```
+    ```
+    php app/console doctrine:database:create
+    php app/console doctrine:schema:create
+    php app/console doctrine:fixtures:load
+    ```
 
-3. Make sure you have node and npm installed and setup. If you do, the following
-2 commands should work"
+1. Make sure you have node and npm installed and setup. If you do, the following
+2 commands should work.
 
-```
-node -v
-npm -v
-```
+    ```
+    node -v
+    npm -v
+    ```
 
-4. Use npm to install bower, compass and grunt-cli
+    If these don't work, ya know, install them!
 
-```
-sudo npm install -g bower
-sudo npm install -g compass
-sudo npm install -g grunt-cli
-```
+1. Use npm to install bower, compass and grunt-cli
 
-5. Download the bower dependencies:
+    ```
+    sudo npm install -g bower
+    sudo npm install -g compass
+    sudo npm install -g grunt-cli
+    ```
 
-```
-bower install
-```
+1. Download the bower dependencies:
 
-This should give you a populated `web/assets/vendor` directory.
+    ```
+    bower install
+    ```
 
-6. Download the local node dependencies:
+    This should give you a populated `web/assets/vendor` directory.
 
-```
-npm install
-```
+1. Download the local node dependencies:
 
-This should give you a `node_modules` directory.
+    ```
+    npm install
+    ```
 
-7. Use grunt to initially compile the SASS files
+    This should give you a `node_modules` directory.
 
-```
-grunt
-```
+1. Use grunt to initially compile the SASS files
 
-Later, when you're actually developing, you'll use grunt to watch for file
-changes and automatically re-compile:
+    ```
+    grunt
+    ```
 
-```
-grunt watch
-```
+    Later, when you're actually developing, you'll use grunt to watch for file
+    changes and automatically re-compile:
 
-8. Start up a web server and view it:
+    ```
+    grunt watch
+    ```
 
-```
-php app/console server:run
-```
+1. Start up a web server and view it:
 
-Then go to:
+    ```
+    php app/console server:run
+    ```
 
-```
-http://localhost:8000
-```
+    Then go to:
+
+    ```
+    http://localhost:8000
+    ```
 
 ### What to Look for
 
 Once you have the app running, if you login as `admin:admin`, you'll see
 the following JavaScript items:
 
-1) a little edit button on the homepage for each event which allows inline editing.
-2) When adding a new event, you'll see that the form is AJAX-submitted.
-3) When adding a new event, if you click the map, its border changes colors.
+1. a little edit button on the homepage for each event which allows inline editing.
+1. When adding a new event, you'll see that the form is AJAX-submitted.
+1. When adding a new event, if you click the map, its border changes colors.
 
 All of these are driven by JavaScript included by Require.js. See the `::base.html.twig`
 file as well as the `EventBundle::_requirejs.html.twig` file and notes.
