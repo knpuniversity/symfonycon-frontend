@@ -9,6 +9,8 @@
 /vendor/
 /bin/
 /composer.phar
+
+# Special for our assets stuff!
 /web/assets-built
 /node_modules
 /.sass-cache
