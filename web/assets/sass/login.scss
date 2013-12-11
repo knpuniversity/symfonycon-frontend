@@ -1,3 +1,8 @@
+/**
+ * Special CSS file for *only* the login page
+ */
+@import "base";
+
 .login {
     width: 500px;
     margin: 100px auto;
@@ -15,7 +20,7 @@
     display: -moz-inline-box;
     display: inline-block;
     width: 120px;
-    font-size: 24px;
+    font-size: 20px;
 }
 .login article input[type="text"], .login article input[type="password"] {
     border: 1px solid #ccc;

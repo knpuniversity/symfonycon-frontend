@@ -3,7 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <link rel="stylesheet" href="{{ asset('bundles/user/css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -14,22 +14,26 @@
         <div class="alert alert-danger">{{ error.message|trans }}</div>
         {% endif %}
 
+        <div class="alert alert-info">u: admin<br/>p: admin</div>
+
         <form action="{{ path('login_check') }}" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+            <fieldset>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="_password" />
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="_password" />
 
-            <input type="checkbox" name="_remember_me" />
-            Remember me
+                <input type="checkbox" name="_remember_me" />
+                Remember me
 
-            {#
-                If you want to control the URL the user is redirected to on success (more details below)
-                <input type="hidden" name="_target_path" value="/account" />
-            #}
+                {#
+                    If you want to control the URL the user is redirected to on success (more details below)
+                    <input type="hidden" name="_target_path" value="/account" />
+                #}
+            </fieldset>
 
-            <button type="submit" class="btn">login</button>
+            <button type="submit" class="btn btn-success pull-right">login</button>
         </form>
 
     </article>
