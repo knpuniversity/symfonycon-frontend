@@ -6,10 +6,10 @@ presentation called "Cool like Frontend Developer: Grunt, RequireJS, Bower and o
 
 This highlights some real-word usage of:
 
-1) Require.js
-2) Compass
-3) Uglify
-4) Grunt
+#. Require.js
+#. Compass
+#. Uglify
+#. Grunt
 
 See the **Installation** section or the **What to Look for** section that
 explains what you should expect to see and where.
