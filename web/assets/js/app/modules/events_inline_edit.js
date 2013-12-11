@@ -1,3 +1,8 @@
+/**
+ * A module that can be used to add some inline editing.
+ *
+ * Used by homepage.js
+ */
 define(['jquery'], function ($) {
     var app = function($eventsWrapper) {
         this.$wrapper = $eventsWrapper;

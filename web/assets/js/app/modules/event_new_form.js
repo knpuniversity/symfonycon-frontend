@@ -1,3 +1,7 @@
+/**
+ * A module that returns an object that can be used to allow JavaScript saving
+ * of the new event form. Used by event_new.js
+ */
 define(['jquery', 'bootstrap'], function ($) {
     var app = function($eventsWrapper) {
         this.$wrapper = $eventsWrapper;

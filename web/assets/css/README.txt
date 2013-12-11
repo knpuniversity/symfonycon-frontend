@@ -1,1 +1,1 @@
-This directory is populated with Compass
+This directory is populated by Compass
