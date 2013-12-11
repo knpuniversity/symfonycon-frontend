@@ -1,7 +1,5 @@
 module.exports = function (grunt) {
 
-    var builtDir = 'web/assets-built';
-
     // globs where our JS files are found
     var jsFilePaths = [
         'js/*.js',
@@ -15,7 +13,7 @@ module.exports = function (grunt) {
 
         // some configuration for us to use
         appDir: 'web/assets',
-        builtDir: builtDir,
+        builtDir: 'web/assets-built',
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -37,9 +35,9 @@ module.exports = function (grunt) {
                     jsFilePaths.forEach(function(val) {
                         files.push({
                             expand: true,
-                            cwd: builtDir,
+                            cwd: '<%= builtDir %>',
                             src: val,
-                            dest: builtDir
+                            dest: '<%= builtDir %>'
                         });
                     });
 
