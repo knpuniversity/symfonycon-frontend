@@ -16,49 +16,6 @@ module.exports = function (grunt) {
         appDir: 'web/assets',
         builtDir: 'web/assets-built',
 
-        uglify: {
-            options: {
-                // a cute way to put a banner on each uglified file
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-            },
-            build: {
-                /*
-                 * I'm not sure if finding files recursively is possible. This is
-                 * a bit ugly, but it accomplishes the task of finding all files
-                 * in the built directory (that we want) and uglifying them.
-                 *
-                 * Additionally, I created a little self-executing function
-                 * here so that I could re-use the jsFilePaths from above
-                 *
-                 * https://github.com/gruntjs/grunt-contrib-uglify/issues/23
-                 */
-                files: (function() {
-
-                    var files = [];
-                    jsFilePaths.forEach(function(val) {
-                        files.push({
-                            expand: true,
-                            cwd: '<%= builtDir %>',
-                            src: val,
-                            dest: '<%= builtDir %>'
-                        });
-                    });
-
-                    return files;
-                })()
-            }
-        },
-        // Make sure code styles are up to par and there are no obvious mistakes
-        jshint: {
-            options: {
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= appDir %>/js/{,*/}*.js'
-            ]
-        },
-
         requirejs: {
             main: {
                 options: {
@@ -108,6 +65,49 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+
+        uglify: {
+            options: {
+                // a cute way to put a banner on each uglified file
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                /*
+                 * I'm not sure if finding files recursively is possible. This is
+                 * a bit ugly, but it accomplishes the task of finding all files
+                 * in the built directory (that we want) and uglifying them.
+                 *
+                 * Additionally, I created a little self-executing function
+                 * here so that I could re-use the jsFilePaths from above
+                 *
+                 * https://github.com/gruntjs/grunt-contrib-uglify/issues/23
+                 */
+                files: (function() {
+
+                    var files = [];
+                    jsFilePaths.forEach(function(val) {
+                        files.push({
+                            expand: true,
+                            cwd: '<%= builtDir %>',
+                            src: val,
+                            dest: '<%= builtDir %>'
+                        });
+                    });
+
+                    return files;
+                })()
+            }
+        },
+        // Make sure code styles are up to par and there are no obvious mistakes
+        jshint: {
+            options: {
+                reporter: require('jshint-stylish')
+            },
+            all: [
+                'Gruntfile.js',
+                '<%= appDir %>/js/{,*/}*.js'
+            ]
         },
 
         compass: {
