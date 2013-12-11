@@ -6,6 +6,17 @@
         baseUrl: '/{{ assetsPath }}/js'
     });
 
+    /**
+     * The heart of our require.js setup!
+     *
+     *   1) Require the common.js file to get all the paths and shim setup
+     *   2) Also get app/default.js, which perhaps holds some JavaScript
+     *      that we want on every page. This is a way to have some "global" JS
+     *      for every page.
+     *   3) Once those files are downloaded, download and execute whatever
+     *      page-specific app we have (e.g. app/homepage). This will do
+     *      whatever craziness we want.
+     */
     require(['common', 'app/default'], function (common) {
         {% if module %}
             require(['{{ module }}']);
