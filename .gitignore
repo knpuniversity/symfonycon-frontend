@@ -12,7 +12,10 @@
 
 # Special for our assets stuff!
 /web/assets-built
+
+# These next 2 are debated, and are often added to the repository
 /node_modules
+/web/assets/vendor
 /.sass-cache
 /web/assets/css
 !web/assets/css/README.txt
