@@ -89,7 +89,7 @@ module.exports = function (grunt) {
                 /*
                  * I'm not sure if finding files recursively is possible. This is
                  * a bit ugly, but it accomplishes the task of finding all files
-                 * in the built directory (that we want) and uglifying them.
+                 * in the built directory (that we want, not vendor) and uglifying them.
                  *
                  * Additionally, I created a little self-executing function
                  * here so that I could re-use the jsFilePaths from above
