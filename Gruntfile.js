@@ -13,8 +13,17 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         // setup some variables that we'll use below
-        sourceDir: 'web/assets',
-        targetDir: 'web/assets-built',
+        srcDir: 'assets',
+        webDir: 'web',
+        targetDir: '<%= webDir %>/<%= srcDir %>',
+
+        copy: {
+            main: {
+                files: [
+                    {expand: true, src: ['<%= srcDir %>/**'], dest: '<%= webDir %>'}
+                ]
+            }
+        },
 
         requirejs: {
             // creates a "main" requirejs sub-task (grunt requirejs:main)
@@ -22,8 +31,8 @@ module.exports = function (grunt) {
             // files or configuration
             main: {
                 options: {
-                    mainConfigFile: '<%= sourceDir %>/js/common.js',
-                    sourceDir: '<%= sourceDir %>',
+                    mainConfigFile: '<%= targetDir %>/js/common.js',
+                    appDir: '<%= srcDir %>',
                     baseUrl: './js',
                     dir: '<%= targetDir %>',
                     // will be taken care of with compass
@@ -111,7 +120,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= sourceDir %>/js/{,*/}*.js'
+                '<%= targetDir %>/js/{,*/}*.js'
             ]
         },
 
@@ -129,8 +138,8 @@ module.exports = function (grunt) {
             // the "development" build subtask (grunt compass:dev)
             dev: {
                 options: {
-                    sassDir: '<%= sourceDir %>/sass',
-                    cssDir: '<%= sourceDir %>/css',
+                    sassDir: '<%= targetDir %>/sass',
+                    cssDir: '<%= targetDir %>/css',
                     outputStyle: 'expanded'
                 }
             }
@@ -140,23 +149,15 @@ module.exports = function (grunt) {
         watch: {
             // watch all JS files and run jshint
             scripts: {
-                // self executing function to reuse jsFilePaths, but prefix each with sourceDir
-                files: (function() {
-                    var files = [];
-                    jsFilePaths.forEach(function(val) {
-                        files.push('<%= sourceDir %>/'+val);
-                    });
-
-                    return files;
-                })(),
-                tasks: ['jshint'],
+                files: ['<%= srcDir %>/js/**'],
+                tasks: ['copy', 'jshint'],
                 options: {
                     spawn: false
                 }
             },
             // watch all .scss files and run compass
             compass: {
-                files: '<%= sourceDir %>/sass/*.scss',
+                files: '<%= targetDir %>/sass/*.scss',
                 tasks: ['compass:dev'],
                 options: {
                     spawn: false
@@ -172,10 +173,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // the "default" task (e.g. simply "Grunt") runs tasks for development
-    grunt.registerTask('default', ['jshint', 'compass:dev']);
+    grunt.registerTask('default', ['copy', 'jshint', 'compass:dev']);
 
     // register a "production" task that sets everything up before deployment
-    grunt.registerTask('production', ['jshint', 'requirejs', 'uglify', 'compass:dist']);
+    grunt.registerTask('production', ['copy', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
 };

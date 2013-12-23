@@ -15,7 +15,8 @@
 
 # These next 2 are debated, and are often added to the repository
 /node_modules
-/web/assets/vendor
+/assets/vendor
+/web/assets
 /.sass-cache
 /assets/css
 !/assets/css/README.txt
