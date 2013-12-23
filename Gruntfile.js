@@ -157,8 +157,8 @@ module.exports = function (grunt) {
             },
             // watch all .scss files and run compass
             compass: {
-                files: '<%= targetDir %>/sass/*.scss',
-                tasks: ['compass:dev'],
+                files: '<%= srcDir %>/sass/*.scss',
+                tasks: ['copy', 'compass:dev'],
                 options: {
                     spawn: false
                 }
