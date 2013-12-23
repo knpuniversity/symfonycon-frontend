@@ -4,9 +4,6 @@ imports:
     - { resource: "@EventBundle/Resources/config/services.yml" }
     - { resource: "@UserBundle/Resources/config/services.yml" }
 
-parameters:
-    assets_directory: 'assets'
-
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
@@ -33,8 +30,6 @@ twig:
     form:
         resources:
             - "::forms.html.twig"
-    globals:
-        assetsPath: %assets_directory%
 
 # Assetic Configuration
 assetic:

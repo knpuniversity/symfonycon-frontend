@@ -34,11 +34,8 @@
             }) }}
         {% endblock %}
 
-        {#
-            Traditional stylesheets block, except we use the assetsPath variable setup in config.yml
-        #}
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset(assetsPath~'/css/layout.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('assets/css/layout.css') }}"/>
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
