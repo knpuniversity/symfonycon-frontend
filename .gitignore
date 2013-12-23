@@ -17,5 +17,5 @@
 /node_modules
 /web/assets/vendor
 /.sass-cache
-/web/assets/css
-!web/assets/css/README.txt
+/assets/css
+!/assets/css/README.txt
