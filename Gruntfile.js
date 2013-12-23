@@ -13,8 +13,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         // setup some variables that we'll use below
-        appDir: 'web/assets',
-        builtDir: 'web/assets-built',
+        sourceDir: 'web/assets',
+        targetDir: 'web/assets-built',
 
         requirejs: {
             // creates a "main" requirejs sub-task (grunt requirejs:main)
@@ -22,10 +22,10 @@ module.exports = function (grunt) {
             // files or configuration
             main: {
                 options: {
-                    mainConfigFile: '<%= appDir %>/js/common.js',
-                    appDir: '<%= appDir %>',
+                    mainConfigFile: '<%= sourceDir %>/js/common.js',
+                    sourceDir: '<%= sourceDir %>',
                     baseUrl: './js',
-                    dir: '<%= builtDir %>',
+                    dir: '<%= targetDir %>',
                     // will be taken care of with compass
                     optimizeCss: "none",
                     // will be taken care of with an uglify task directly
@@ -93,9 +93,9 @@ module.exports = function (grunt) {
                     jsFilePaths.forEach(function(val) {
                         files.push({
                             expand: true,
-                            cwd: '<%= builtDir %>',
+                            cwd: '<%= targetDir %>',
                             src: val,
-                            dest: '<%= builtDir %>'
+                            dest: '<%= targetDir %>'
                         });
                     });
 
@@ -111,7 +111,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= appDir %>/js/{,*/}*.js'
+                '<%= sourceDir %>/js/{,*/}*.js'
             ]
         },
 
@@ -120,8 +120,8 @@ module.exports = function (grunt) {
             // the "production" build subtask (grunt compass:dist)
             dist: {
                 options: {
-                    sassDir: '<%= builtDir %>/sass',
-                    cssDir: '<%= builtDir %>/css',
+                    sassDir: '<%= targetDir %>/sass',
+                    cssDir: '<%= targetDir %>/css',
                     environment: 'production',
                     outputStyle: 'compressed'
                 }
@@ -129,8 +129,8 @@ module.exports = function (grunt) {
             // the "development" build subtask (grunt compass:dev)
             dev: {
                 options: {
-                    sassDir: '<%= appDir %>/sass',
-                    cssDir: '<%= appDir %>/css',
+                    sassDir: '<%= sourceDir %>/sass',
+                    cssDir: '<%= sourceDir %>/css',
                     outputStyle: 'expanded'
                 }
             }
@@ -140,11 +140,11 @@ module.exports = function (grunt) {
         watch: {
             // watch all JS files and run jshint
             scripts: {
-                // self executing function to reuse jsFilePaths, but prefix each with appDir
+                // self executing function to reuse jsFilePaths, but prefix each with sourceDir
                 files: (function() {
                     var files = [];
                     jsFilePaths.forEach(function(val) {
-                        files.push('<%= appDir %>/'+val);
+                        files.push('<%= sourceDir %>/'+val);
                     });
 
                     return files;
@@ -156,7 +156,7 @@ module.exports = function (grunt) {
             },
             // watch all .scss files and run compass
             compass: {
-                files: '<%= appDir %>/sass/*.scss',
+                files: '<%= sourceDir %>/sass/*.scss',
                 tasks: ['compass:dev'],
                 options: {
                     spawn: false
