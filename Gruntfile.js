@@ -25,6 +25,12 @@ module.exports = function (grunt) {
             }
         },
 
+        clean: {
+            build: {
+                src: ['<%= targetDir %>/**']
+            }
+        },
+
         requirejs: {
             // creates a "main" requirejs sub-task (grunt requirejs:main)
             // we *could* have other sub-tasks for using requirejs with other
@@ -174,10 +180,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // the "default" task (e.g. simply "Grunt") runs tasks for development
-    grunt.registerTask('default', ['copy', 'jshint', 'compass:dev']);
+    grunt.registerTask('default', ['clean', 'copy', 'jshint', 'compass:dev']);
 
     // register a "production" task that sets everything up before deployment
-    grunt.registerTask('production', ['copy', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
+    grunt.registerTask('production', ['clean', 'copy', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
 };
