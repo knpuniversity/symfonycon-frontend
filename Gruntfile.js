@@ -28,6 +28,9 @@ module.exports = function (grunt) {
         clean: {
             build: {
                 src: ['<%= targetDir %>/**']
+            },
+            sass: {
+                src: ['<%= targetDir %>/sass']
             }
         },
 
@@ -182,9 +185,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
+    // sub-task that copies assets to web/assets, and also cleans some things
+    grunt.registerTask('copy:assets', ['clean:build', 'copy', 'clean:sass']);
+
     // the "default" task (e.g. simply "Grunt") runs tasks for development
-    grunt.registerTask('default', ['clean', 'copy', 'jshint', 'compass:dev']);
+    grunt.registerTask('default', ['copy:assets', 'jshint', 'compass:dev']);
 
     // register a "production" task that sets everything up before deployment
-    grunt.registerTask('production', ['clean', 'copy', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
+    grunt.registerTask('production', ['copy:assets', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
 };
