@@ -1,7 +1,7 @@
 <script src="{{ asset('assets/vendor/requirejs/require.js') }}"></script>
 <script>
     requirejs.config({
-        baseUrl: '/assets/js'
+        baseUrl: '{{ app.request.basePath }}/assets/js'
     });
 
     /**
