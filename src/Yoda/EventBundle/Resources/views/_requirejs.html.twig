@@ -3,7 +3,7 @@
 
     // let the baseUrl be dynamic so we can use the compiled assets when needed
     requirejs.config({
-        baseUrl: '/{{ assetsPath }}/js'
+        baseUrl: '{{ app.request.basePath }}/{{ assetsPath }}/js'
     });
 
     /**
