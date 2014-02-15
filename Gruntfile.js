@@ -20,7 +20,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, src: ['<%= srcDir %>/**'], dest: '<%= webDir %>'}
+                    {expand: true, src: ['<%= srcDir %>/**', '!<%= srcDir %>/sass/**'], dest: '<%= webDir %>'}
                 ]
             }
         },
@@ -28,9 +28,6 @@ module.exports = function (grunt) {
         clean: {
             build: {
                 src: ['<%= targetDir %>/**']
-            },
-            sass: {
-                src: ['<%= targetDir %>/sass']
             }
         },
 
@@ -184,7 +181,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // sub-task that copies assets to web/assets, and also cleans some things
-    grunt.registerTask('copy:assets', ['clean:build', 'copy', 'clean:sass']);
+    grunt.registerTask('copy:assets', ['clean:build', 'copy']);
 
     // the "default" task (e.g. simply "Grunt") runs tasks for development
     grunt.registerTask('default', ['copy:assets', 'jshint', 'compass:dev']);
