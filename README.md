@@ -4,6 +4,8 @@ SymfonyCon: JavaScript like a Frontend Developer
 Well hello there! This is the example project used in the SymfonyCon 2013
 presentation called "Cool like Frontend Developer: Grunt, RequireJS, Bower and other Tools".
 
+Here is the slideshare : [http://www.slideshare.net/weaverryan/cool-like-frontend-developer-grunt-requirejs-bower-and-other-tools-29177248](http://www.slideshare.net/weaverryan/cool-like-frontend-developer-grunt-requirejs-bower-and-other-tools-29177248)
+
 This highlights some real-word usage of:
 
 1. Require.js
