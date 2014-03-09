@@ -1,12 +1,20 @@
 # Compass configuration file! See: http://compass-style.org/help/tutorials/configuration-reference/
 
-# Set this to the root of your project when deployed:
-http_path = "/"
+# Target directory where the CSS files will be built
 css_dir = "web/assets/css"
-# note i am using the source directory here, not the web directory
+
+# Source directory of the sass files
+# Notice this is *not* in web - we're not copying these files to web, because
+# we don't need to (we can just tell Compass to look here)
 sass_dir = "assets/sass"
-images_dir = "web/assets/img"
-javascripts_dir = "assets/js"
+
+
+# The following things we don't care about as much, but here you go :)
+
+# Used with the image-url helper
+images_dir = "web/assets/images"
+# For its purpose, see https://groups.google.com/forum/#!topic/compass-users/rjAntZ8RZgs
+javascripts_dir = "web/assets/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
