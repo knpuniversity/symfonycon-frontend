@@ -20,7 +20,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, src: ['<%= srcDir %>/**'], dest: '<%= webDir %>'}
+                    {expand: true, src: ['<%= srcDir %>/**', '!<%= srcDir %>/sass/**'], dest: '<%= webDir %>'}
                 ]
             }
         },
@@ -28,9 +28,6 @@ module.exports = function (grunt) {
         clean: {
             build: {
                 src: ['<%= targetDir %>/**']
-            },
-            sass: {
-                src: ['<%= targetDir %>/sass']
             }
         },
 
@@ -138,8 +135,7 @@ module.exports = function (grunt) {
             // the "production" build subtask (grunt compass:dist)
             dist: {
                 options: {
-                    sassDir: '<%= targetDir %>/sass',
-                    cssDir: '<%= targetDir %>/css',
+                    config: '<%= srcDir %>/../config.rb',
                     environment: 'production',
                     outputStyle: 'compressed'
                 }
@@ -147,8 +143,7 @@ module.exports = function (grunt) {
             // the "development" build subtask (grunt compass:dev)
             dev: {
                 options: {
-                    sassDir: '<%= targetDir %>/sass',
-                    cssDir: '<%= targetDir %>/css',
+                    config: '<%= srcDir %>/../config.rb',
                     outputStyle: 'expanded'
                 }
             }
