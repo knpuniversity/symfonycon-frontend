@@ -186,11 +186,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // sub-task that copies assets to web/assets, and also cleans some things
-    grunt.registerTask('copy:assets', ['clean:build', 'copy', 'clean:sass']);
+    grunt.registerTask('copy:assets', ['clean:build', 'copy']);
 
     // the "default" task (e.g. simply "Grunt") runs tasks for development
-    grunt.registerTask('default', ['copy:assets', 'jshint', 'compass:dev']);
+    grunt.registerTask('default', ['copy:assets', 'jshint', 'compass:dev', 'clean:sass']);
 
     // register a "production" task that sets everything up before deployment
-    grunt.registerTask('production', ['copy:assets', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
+    grunt.registerTask('production', ['copy:assets', 'jshint', 'requirejs', 'uglify', 'compass:dist', 'clean:sass']);
 };
