@@ -13,12 +13,15 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    // copy /assets to /web/assets (but don't copy the SASS source files, not needed!)
                     {
                         expand: true,
                         src: [
+                            // copy /assets to /web/assets
                             '<%= rootAssetsDir %>/**',
-                            '!<%= rootAssetsDir %>/sass/**'
+                            // but don't copy the SASS source files, not needed!
+                            '!<%= rootAssetsDir %>/sass/**',
+                            // and don't copy the config directory
+                            '!<%= rootAssetsDir %>/config/**'
                         ],
                         dest: '<%= webDir %>'
                     }
@@ -121,7 +124,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     // SASS and CSS paths are defined in the config
-                    config: '<%= rootAssetsDir %>/../config.rb',
+                    config: '<%= rootAssetsDir %>/config/compass.rb',
                     environment: 'production',
                     outputStyle: 'compressed'
                 }
@@ -130,7 +133,7 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     // SASS and CSS paths are defined in the config
-                    config: '<%= rootAssetsDir %>/../config.rb',
+                    config: '<%= rootAssetsDir %>/config/compass.rb',
                     outputStyle: 'expanded'
                 }
             }
