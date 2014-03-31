@@ -1,12 +1,5 @@
 module.exports = function (grunt) {
 
-    // globs where our JS files are found - used below in uglify and watch
-    var jsFilePaths = [
-        'js/*.js',
-        'js/app/*.js',
-        'js/app/modules/*.js'
-    ];
-
     // Project configuration
     grunt.initConfig({
         // you can read in JSON files, which are then set as objects. We use this below with banner
@@ -95,30 +88,14 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                /*
-                 * I'm not sure if finding files recursively is possible. This is
-                 * a bit ugly, but it accomplishes the task of finding all files
-                 * in the built directory (that we want, not vendor) and uglifying them.
-                 *
-                 * Additionally, I created a little self-executing function
-                 * here so that I could re-use the jsFilePaths from above
-                 *
-                 * https://github.com/gruntjs/grunt-contrib-uglify/issues/23
-                 */
-                files: (function() {
-
-                    var files = [];
-                    jsFilePaths.forEach(function(val) {
-                        files.push({
-                            expand: true,
-                            cwd: '<%= targetDir %>',
-                            src: val,
-                            dest: '<%= targetDir %>'
-                        });
-                    });
-
-                    return files;
-                })()
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= targetDir %>/js/',
+                        src: ['**/*.js'],
+                        dest: '<%= targetDir %>/js/'
+                    }
+                ]
             }
         },
 
