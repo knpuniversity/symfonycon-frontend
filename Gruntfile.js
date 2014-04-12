@@ -6,24 +6,32 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         // setup some variables that we'll use below
-        srcDir: 'assets',
+        rootAssetsDir: 'assets',
         webDir: 'web',
-        targetDir: '<%= webDir %>/<%= srcDir %>',
+        targetAssetsDir: '<%= webDir %>/assets',
 
         copy: {
             main: {
                 files: [
-                    {expand: true, src: ['<%= srcDir %>/**'], dest: '<%= webDir %>'}
+                    {
+                        expand: true,
+                        src: [
+                            // copy /assets to /web/assets
+                            '<%= rootAssetsDir %>/**',
+                            // but don't copy the SASS source files, not needed!
+                            '!<%= rootAssetsDir %>/sass/**',
+                            // and don't copy the config directory
+                            '!<%= rootAssetsDir %>/config/**'
+                        ],
+                        dest: '<%= webDir %>'
+                    }
                 ]
             }
         },
 
         clean: {
             build: {
-                src: ['<%= targetDir %>/**']
-            },
-            sass: {
-                src: ['<%= targetDir %>/sass']
+                src: ['<%= targetAssetsDir %>/**']
             }
         },
 
@@ -33,10 +41,10 @@ module.exports = function (grunt) {
             // files or configuration
             main: {
                 options: {
-                    mainConfigFile: '<%= targetDir %>/js/common.js',
-                    appDir: '<%= srcDir %>',
+                    mainConfigFile: '<%= targetAssetsDir %>/js/common.js',
+                    appDir: '<%= rootAssetsDir %>',
                     baseUrl: './js',
-                    dir: '<%= targetDir %>',
+                    dir: '<%= targetAssetsDir %>',
                     // will be taken care of with compass
                     optimizeCss: "none",
                     // will be taken care of with an uglify task directly
@@ -91,9 +99,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= targetDir %>/js/',
+                        cwd: '<%= targetAssetsDir %>/js/',
                         src: ['**/*.js'],
-                        dest: '<%= targetDir %>/js/'
+                        dest: '<%= targetAssetsDir %>/js/'
                     }
                 ]
             }
@@ -106,7 +114,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= targetDir %>/js/{,*/}*.js'
+                '<%= targetAssetsDir %>/js/{,*/}*.js'
             ]
         },
 
@@ -115,8 +123,8 @@ module.exports = function (grunt) {
             // the "production" build subtask (grunt compass:dist)
             dist: {
                 options: {
-                    sassDir: '<%= targetDir %>/sass',
-                    cssDir: '<%= targetDir %>/css',
+                    // SASS and CSS paths are defined in the config
+                    config: '<%= rootAssetsDir %>/config/compass.rb',
                     environment: 'production',
                     outputStyle: 'compressed'
                 }
@@ -124,8 +132,8 @@ module.exports = function (grunt) {
             // the "development" build subtask (grunt compass:dev)
             dev: {
                 options: {
-                    sassDir: '<%= targetDir %>/sass',
-                    cssDir: '<%= targetDir %>/css',
+                    // SASS and CSS paths are defined in the config
+                    config: '<%= rootAssetsDir %>/config/compass.rb',
                     outputStyle: 'expanded'
                 }
             }
@@ -135,7 +143,7 @@ module.exports = function (grunt) {
         watch: {
             // watch all JS files and run jshint
             scripts: {
-                files: ['<%= srcDir %>/js/**'],
+                files: ['<%= rootAssetsDir %>/js/**'],
                 tasks: ['copy', 'jshint'],
                 options: {
                     spawn: false
@@ -143,7 +151,7 @@ module.exports = function (grunt) {
             },
             // watch all .scss files and run compass
             compass: {
-                files: '<%= srcDir %>/sass/*.scss',
+                files: '<%= rootAssetsDir %>/sass/*.scss',
                 tasks: ['copy', 'compass:dev'],
                 options: {
                     spawn: false
@@ -166,8 +174,8 @@ module.exports = function (grunt) {
     grunt.registerTask('copy:assets', ['clean:build', 'copy']);
 
     // the "default" task (e.g. simply "Grunt") runs tasks for development
-    grunt.registerTask('default', ['copy:assets', 'jshint', 'compass:dev', 'clean:sass']);
+    grunt.registerTask('default', ['copy:assets', 'jshint', 'compass:dev']);
 
     // register a "production" task that sets everything up before deployment
-    grunt.registerTask('production', ['copy:assets', 'jshint', 'requirejs', 'uglify', 'compass:dist', 'clean:sass']);
+    grunt.registerTask('production', ['copy:assets', 'jshint', 'requirejs', 'uglify', 'compass:dist']);
 };
