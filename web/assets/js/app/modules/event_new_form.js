@@ -36,7 +36,7 @@ define(['jquery', 'bootstrap'], function ($) {
                             // delay slightly before redirecting
                             setTimeout(function() {
                                 window.location = data.redirect_url;
-                            }, 1000)
+                            }, 1000);
                         } else {
                             $wrapper.html(data.form);
                             $pleaseWaitDiv.modal('hide');
